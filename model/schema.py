@@ -1,3 +1,5 @@
+"""This schema used to define a structure for the book model"""
+
 from pydantic import BaseModel
 
 

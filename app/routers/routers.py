@@ -23,7 +23,7 @@ from model.schema import BookScrap
 load_dotenv()
 
 
-endPoints = APIRouter()
+end_points = APIRouter()
 
 mongo_uri = os.getenv("MONGO_URI")
 database_name = os.getenv("DATABASE")
@@ -33,7 +33,7 @@ book_db = book_db = DatabaseConfig.connect_to_database(
 )
 
 
-@endPoints.get("/")
+@end_points.get("/")
 def home():
     """
     Health check endpoint to verify the FastAPI service is running.
@@ -41,7 +41,7 @@ def home():
     return {"status": "Ok", "message": "My fast API is running"}
 
 
-@endPoints.get("/all/books")
+@end_points.get("/all/books")
 def get_all_books():
     """
     Retrieve all books from the MongoDB collection.
@@ -53,7 +53,7 @@ def get_all_books():
     return {"status": "Ok", "data": converted_books}
 
 
-@endPoints.get("/get/book/{book_id}")
+@end_points.get("/get/book/{book_id}")
 def get_book(book_id: str):
     """
     Retrieve a single book by its ObjectId.
@@ -75,7 +75,7 @@ def get_book(book_id: str):
     return {"status": "Ok", "data": converted_book}
 
 
-@endPoints.post("/create/book")
+@end_points.post("/create/book")
 def create_book(book_data: BookScrap):
     """
     Create a new book in the MongoDB collection.
@@ -89,7 +89,7 @@ def create_book(book_data: BookScrap):
     return {"status": "201", "data": str(result.inserted_id)}
 
 
-@endPoints.delete("/delete/{book_id}")
+@end_points.delete("/delete/{book_id}")
 def delete_book(book_id: str):
     """
     Delete a book from the MongoDB collection by its ObjectId.
@@ -113,7 +113,7 @@ def delete_book(book_id: str):
         return {"status": "Error", "message": f"An error occurred: {e}"}
 
 
-@endPoints.patch("/update/{book_id}")
+@end_points.patch("/update/{book_id}")
 def update_book(book_id: str, book_data: BookScrap):
     """
     Update an existing book in the MongoDB collection.
@@ -128,12 +128,12 @@ def update_book(book_id: str, book_data: BookScrap):
     book_dict = book_data.model_dump()  # This will convert the Pydantic model to a dict
 
     # Check if BookDetails is a Pydantic model or already a dictionary
-    if isinstance(book_dict["BookDetails"], dict):
+    if isinstance(book_dict["book_details"], dict):
         # If it's already a dictionary, no need to convert it
         pass
     else:
         # If it's a Pydantic model, convert it to a dictionary
-        book_dict["BookDetails"] = book_dict["BookDetails"].dict()
+        book_dict["book_details"] = book_dict["book_details"].dict()
 
     # Prepare the update data using the $set operator
     update_data = {"$set": book_dict}

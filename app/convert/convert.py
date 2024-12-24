@@ -1,3 +1,6 @@
+"""This convert used to convert book data into dictionary"""
+
+
 def book_scrap(single_book) -> dict:
     """
     Converts a single book document to a dictionary.
@@ -9,14 +12,14 @@ def book_scrap(single_book) -> dict:
         "price": float(single_book["price"]),
         "stock": str(single_book["stock"]),
         "book_link": str(single_book["book_link"]),
-        "BookDetails": {
-            "book_upc": str(single_book["BookDetails"]["book_upc"]),
+        "book_details": {
+            "book_upc": str(single_book["book_details"]["book_upc"]),
             "book_description": str(
-                single_book["BookDetails"].get("book_description", "")
+                single_book["book_details"].get("book_description", "")
             ),
-            "book_type": str(single_book["BookDetails"].get("book_type", "")),
+            "book_type": str(single_book["book_details"].get("book_type", "")),
             "availability_number": int(
-                single_book["BookDetails"].get("availability_number", 0)
+                single_book["book_details"].get("availability_number", 0)
             ),
         },
     }

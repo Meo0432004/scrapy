@@ -3,7 +3,7 @@
 """
 
 from parsel import Selector
-import elt.transform as transform
+import etl.transform as transform
 from serializer.serializer import serialize_to_book_scrap
 from config import log
 
@@ -46,7 +46,7 @@ def extract_books(url):
                 "price": model.price,
                 "stock": model.stock,
                 "book_link": model.book_link,
-                "BookDetails": {
+                "book_details": {
                     "book_upc": model.BookDetails.book_upc,
                     "book_description": model.BookDetails.book_description,
                     "book_type": model.BookDetails.book_type,

@@ -6,6 +6,7 @@ handles the connection to a specified MongoDB database and collection, along wit
 basic error handling and logging.
 """
 
+from pymongo.errors import PyMongoError
 from pymongo import MongoClient
 from config import log
 
@@ -38,6 +39,6 @@ class DatabaseConfig:
                 f"Connected to database {db.name} - collection {collection.name} successfully!"
             )
             return collection
-        except Exception as e:
+        except PyMongoError as e:
             log.log_error(f"Failed to connect to database {database_name}.", e)
             return None

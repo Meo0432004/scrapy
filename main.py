@@ -5,8 +5,8 @@
 
 import os
 from dotenv import load_dotenv
-from elt.extract import extract_books
-from elt.load import load_data
+from etl.extract import extract_books
+from etl.load import load_data
 
 
 # Load environment variables

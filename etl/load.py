@@ -2,6 +2,7 @@
     Use for connect to the database and execute insert query
 """
 
+from pymongo.errors import PyMongoError
 from config import log
 from config.database import DatabaseConfig
 
@@ -24,5 +25,5 @@ def load_data(mongo_uri, database_name, collection_name, data: list):
         try:
             collection.insert_many(data)
             log.log_message(f"Inserted {len(data)} records successfully.")
-        except Exception as e:
+        except PyMongoError as e:
             log.log_error("Error inserting data into MongoDB.", e)

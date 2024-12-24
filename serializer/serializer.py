@@ -1,3 +1,5 @@
+"""This serializer used to convert book data after scraped into dictionary"""
+
 from model.schema import BookScrap, BookDetails
 
 
@@ -21,7 +23,7 @@ def serialize_to_book_scrap(
         price=price,
         stock=stock,
         book_link=book_link,
-        BookDetails=BookDetails(
+        book_details=BookDetails(
             book_upc=book_upc,
             book_description=book_description,
             book_type=book_type,

@@ -1,3 +1,5 @@
+"""This transform used to transform the raw data into each element separately"""
+
 import re
 from parsel import Selector
 import requests

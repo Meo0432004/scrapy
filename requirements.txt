@@ -16,4 +16,3 @@ requests==2.32.3
 typing_extensions==4.12.2
 urllib3==2.2.3
 w3lib==2.2.1
-ObjectId
